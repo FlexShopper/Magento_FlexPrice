@@ -16,6 +16,7 @@ Install
 2. Visit `System > Magento Conenct > Magento Connect Manager`.
 3. You might need to login again to connect manager with the same credentials as Magento's panel.
 4. Place the extension key in the specificed field `http://connect20.magentocommerce.com/community/FlexShopper_Payment` as shown below:
+
 [![](assets/magento_connect.png)](https://merchants.flexshopper.com)
 
 5. Click install.
