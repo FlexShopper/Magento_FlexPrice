@@ -1,4 +1,5 @@
 [![](assets/flexshopper.png)](https://merchants.flexshopper.com)
+[![](assets/benefits.png)](https://merchants.flexshopper.com)
 
 # FlexShopper (Lease to Own Payment Method)
 FlexShopper is a new, alternative payment method that allows shoppers to lease to own the products they want. So, customers can get their favorite products from your store, while making affordable weekly payments over time.
