@@ -1,0 +1,53 @@
+<?php 
+if($this->showWidget()){
+ ?>
+<script type="text/javascript">
+<?php 
+	$product = $this->getProduct(); 
+	$type = $product->getTypeId();
+
+	if($type != 'downloadable' && $type != 'virtual'){
+		if($type != 'grouped'){
+?>
+	jQuery.noConflict();
+	var the_element_to_use = '';
+	var _flex = _flex || {};
+	var the_element_to_use = "#product-price-<?php echo $product->getId(); ?>";
+	var elementExists = document.getElementById("product-price-<?php echo $product->getId(); ?>"); //" .price";
+	if(elementExists != null){
+		var child_exists = elementExists.getElementsByTagName("span").length;
+		if(child_exists > 0){
+			var the_element_to_use = "#product-price-<?php echo $product->getId(); ?> .price";
+		}
+	}
+	console.log(the_element_to_use);
+	_flex.priceSelector = the_element_to_use;
+<?php 
+		} else {
+		// $associated = $product->getTypeInstance(true)->getAssociatedProducts($product);
+		// foreach ($associated as $product_associated) {
+?>
+	// var the_element_to_use_<?php echo $product->getId(); ?> = '';
+	// var _flex_<?php echo $product->getId(); ?> = _flex_<?php echo $product->getId(); ?> || {};
+	// var the_element_to_use_<?php echo $product->getId(); ?> = "#product-price-<?php echo $product_associated->getId(); ?>";
+	// var elementExists = document.getElementById("product-price-<?php echo $product_associated->getId(); ?>"); //" .price";
+	// if(elementExists != null){
+	// 	if(elementExists.className.indexOf('price') != -1){
+	// 		var the_element_to_use = "#product-price-<?php echo $product_associated->getId(); ?> .price";
+	// 	}
+	// }
+	// console.log(the_element_to_use_<?php echo $product->getId(); ?>);
+	// _flex_<?php echo $product->getId(); ?>.priceSelector = the_element_to_use_<?php echo $product->getId(); ?>;
+<?php
+		// 	}
+		// }
+		}
+	}
+?>
+    (function() {
+        var fx = document.createElement('script'); fx.type = 'text/javascript'; fx.async = true;
+        fx.src = ('https:' == document.location.protocol ? 'https://cdn' : 'http://cdn') + '.flexshopper.com/plugin.js?<?php echo time(); ?>';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(fx, s);
+    })();
+</script>
+<?php } ?>

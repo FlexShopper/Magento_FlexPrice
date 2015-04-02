@@ -1,0 +1,26 @@
+<?php
+	$store = strtoupper(Mage::getBaseUrl());
+?>
+<section class="lp-sec-how">
+	<ul class="form-list list-unstyled li-steps row" id="payment_form_<?php echo $this->getMethodCode() ?>" style="display:none;">
+		<li class="step-3 col-3">
+			<h3>Apply</h3>
+			You will be temporarily redirected to FlexShopper.com. Fill out the easy, online application and get an instant spending decision. </li>
+		<li class="step-4 col-3">
+			<h3>Sign</h3>
+			Accept the simple, electronic lease agreement, and you will be redirected to <?php echo $store; ?> for your order confirmation.</li>
+    </ul>
+</section>
+<div style="clear: both;"></div>
+<style type="text/css">
+.lp-sec-how h3{margin:0;padding-top:8px; font-weight: .9em;}
+.lp-sec-how ul.li-steps{padding-left:0;margin-bottom:0;list-style-type:none;}
+.lp-sec-how .li-steps li{padding-left: 10px;min-height: 55px;list-style-type:none;font-size: 0.9em;}
+.lp-sec-how .col-3{float:left;width: 100%;}
+.lp-sec-how .how-imgs{margin:5px 0 0;}
+.lp-sec-how .how-imgs .how-img-caption{display:block;font-weight:bold;}
+
+@media (max-width: 680px) {
+	.lp-sec-how .col-3{width:auto;margin-bottom:10px;}
+}
+</style>

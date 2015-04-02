@@ -1,0 +1,40 @@
+<?php $response_message = $this->getData('response_message'); ?>
+
+<div class="center wrapper">
+	<div id="logo" class="center"></div>
+	<p class="center title"><?php echo $this->__($response_message) ?></p>
+</div>
+
+<script type="text/javascript">
+	(function(){
+		setTimeout(function(){
+			document.location.href = '<?php echo Mage::getBaseUrl() . 'checkout/onepage/failure'; ?>';
+		}, 3000);
+		})();
+</script>
+
+<style type="text/css">
+
+#payfortpaymentform {
+	display:none;
+}
+
+.center {
+    width: 50%;
+    margin: 0 auto;
+}
+
+#logo {
+	background:url(<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'frontend/base/default/images/flexshopper/logo.png' ?>);
+	width: 123px;
+	height: 44px;
+	margin-top:50px;
+
+}
+
+.title {
+	text-align: center;
+	margin-top:50px;
+}
+
+</style>

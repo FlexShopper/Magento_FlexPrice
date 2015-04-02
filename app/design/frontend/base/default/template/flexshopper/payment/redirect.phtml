@@ -1,0 +1,113 @@
+<?php
+	$retailer_id 	= htmlentities(trim($this->getData('retailer_id')));
+	$retailer_token = htmlentities(trim($this->getData('retailer_token'))); 
+	$action_gateway = $this->getData('action_gateway');
+
+	//$action_gateway = 'http//sandbox.sdk.flexshopper.com';
+
+	// Retrieve order
+	$_order = Mage::getModel('sales/order');
+	$orderId = Mage::getSingleton('checkout/session')->getLastRealOrderId();
+	$_order->loadByIncrementId($orderId);
+	$total = $_order->getBaseGrandTotal();
+
+	$shipping_amount 	= $_order->getShippingAmount();
+	$gateway_post_URL 	= $action_gateway;
+
+	$address = $_order->getBillingAddress()->getData();
+
+	$data_to_encrypt 	= array('retailer_id' => $retailer_id, 'cart_total' => $total);
+
+	$encrypt 			= Mage::helper('flexpayment/jwt')->encode($data_to_encrypt, $retailer_token);
+	$items 				= $_order->getAllVisibleItems();
+?>
+<div class="center wrapper">
+	<div id="logo" class="center"></div>
+	<p class="center title"><?php echo $this->__('Redirecting to Flexshopper.com ...') ?></p>
+	<form name="flexshopperpaymentform" id="flexshopperpaymentform" method="post" action="<?php echo $gateway_post_URL; ?>" id="form1" name="form1">
+		<!-- general parameters -->
+		<input type="hidden" name="payload[RetailerID]" value="<?php echo $retailer_id; ?>" />
+		<input type="hidden" name="payload[CallBackURL]" value="<?php echo Mage::getUrl('flexshopper/payment/response/', array('order' =>  Mage::helper('flexpayment/api')->getFlexOrder($_order->getId()))); ?>" />
+		<input type="hidden" name="payload[CartReturnURL]" value="<?php echo Mage::getUrl('checkout/cart'); ?>" />		
+		<input type="hidden" name="payload[NonSuccessfulURL]" value="<?php echo Mage::getUrl('flexshopper/payment/responsefail/', array('order' => Mage::helper('flexpayment/api')->getFlexOrder($_order->getId()))); ?>" />
+		<input type="hidden" name="payload[DeliveryCost]" value="<?php echo $shipping_amount;?>" />
+		<input type="hidden" name="payload[DeliveryDate]" value="<?php echo date('Y-m-d', time()+5*24*60*60); ?>" />
+		<input type="hidden" name="payload[DeliveryMethod]" value="parcel" />
+		<input type="hidden" name="payload[TransactionID]" value="<?php echo Mage::helper('flexpayment/api')->getFlexOrder($_order->getId()); ?>" />
+		<input type="hidden" name="payload[Customer][first_name]" value="<?php echo $address['firstname']; ?>" />
+		<input type="hidden" name="payload[Customer][last_name]" value="<?php echo $address['lastname']; ?>" />
+		<input type="hidden" name="payload[Customer][street_addr1]" value="<?php echo $address['street']; ?>" />
+		<input type="hidden" name="payload[Customer][street_addr2]" value="" />
+		<input type="hidden" name="payload[Customer][city]" value="<?php echo $address['city']; ?>" />
+		<input type="hidden" name="payload[Customer][state]" value="<?php echo $address['region']; ?>" />
+		<input type="hidden" name="payload[Customer][zipcode]" value="<?php echo $address['postcode']; ?>" />
+		<input type="hidden" name="payload[RequestSignature]" value="<?php echo $encrypt; ?>" />
+ 
+		<?php
+			$productModel = Mage::getModel('catalog/product');
+			$_helper = Mage::helper('flexpayment');
+			$_versionHelper = Mage::helper('flexpayment/version');
+			$isMageOld = ($_versionHelper->isMageCommunity() && version_compare(Mage::getVersion(), '1.6.0', '<'))
+				|| (!$_versionHelper->isMageCommunity() && version_compare(Mage::getVersion(), '1.11.0', '<'));
+
+			foreach ($items as $key => $item) {
+				if ($isMageOld){
+					$product = $productModel->load($item->getProductId());
+				} else {
+					$product = $item->getProduct();
+				}
+
+				$condition 		= $product->getCondition();
+
+				if(!empty($condition)){
+					$condition = $product->getAttributeText('condition');
+				} else {
+					$condition = 'new';
+				}
+
+				$manufacturer = $_helper->getManufacturer($product);
+
+				if(empty($manufacturer)){
+					$manufacturer = '-';
+				}
+		?>
+		<input type="hidden" name="payload[Items][<?php echo $key; ?>][item_description]" value="<?php echo $item->getName(); ?>" />
+		<input type="hidden" name="payload[Items][<?php echo $key; ?>][item_sku]" value="<?php echo $item->getSku(); ?>" />
+		<input type="hidden" name="payload[Items][<?php echo $key; ?>][item_cost]" value="<?php echo $item->getBasePrice(); ?>" />
+		<input type="hidden" name="payload[Items][<?php echo $key; ?>][item_tax]" value="0" />
+		<input type="hidden" name="payload[Items][<?php echo $key; ?>][item_brand]" value="<?php echo $manufacturer; ?>" />
+		<input type="hidden" name="payload[Items][<?php echo $key; ?>][item_condition]" value="<?php echo $condition; ?>" />
+		<input type="hidden" name="payload[Items][<?php echo $key; ?>][qty]" value="<?php echo (int)$item->getQtyOrdered(); ?>" />
+		<?php } ?>
+
+		<input type="submit" value="Pay via FlexShopper">
+	</form>
+</div>
+<style type="text/css">
+#flexshopperpaymentform {
+	display:none;
+}
+.center {
+    width: 50%;
+    margin: 0 auto;
+}
+#logo {
+	background:url('http://cdn.flexshopper.com/media/wysiwyg/cms/FlexShopper-logo.png') no-repeat left top;
+	width: 219px;
+	height: 30px;
+	margin-top:50px;
+
+}
+.title {
+	text-align: center;
+	margin-top:50px;
+}
+</style>
+<?php 	//var_dump($retailer_id); die(); ?>
+<script type="text/javascript">
+	(function(){
+		setTimeout(function(){
+			document.flexshopperpaymentform.submit();
+		}, 3000);
+		})();
+</script>

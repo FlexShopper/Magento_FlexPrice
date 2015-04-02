@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<config>
+   <sections>
+        <payment>
+            <groups>
+                <flexpayment translate="label" module="flexpayment">
+                    <label>FlexShopper Payment Method</label>
+                    <sort_order>670</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <expanded>1</expanded>
+                    <frontend_class>complex</frontend_class>
+                    <flexpayment_title></flexpayment_title>
+                    <help_url></help_url>
+                    <fields>
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+                         <!--<title translate="label">-->
+                            <!--<label>Title</label>-->
+                            <!--<frontend_type>text</frontend_type>-->
+                            <!--<sort_order>2</sort_order>-->
+                            <!--<show_in_default>1</show_in_default>-->
+                            <!--<show_in_website>1</show_in_website>-->
+                            <!--<show_in_store>1</show_in_store>-->
+                        <!--</title>-->
+                        <retailer_id translate="label">
+                            <label>Retailer ID</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>Retailer ID should be given on signup.</comment>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </retailer_id>
+                        <retailer_token translate="label">
+                            <label>Retailer Token</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>Retailer Token should be given on signup.</comment>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </retailer_token>
+                        <sandbox_mode translate="label">
+                            <label>Sandbox mode</label>
+                            <frontend_type>select</frontend_type>
+                            <comment>Testing or live mode.</comment>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sandbox_mode>
+                        <show_flexshopper_widget translate="label">
+                            <label>Show Weekly Price</label>
+                            <frontend_type>select</frontend_type>
+                            <comment>Show the weekly price on product page.</comment>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_flexshopper_widget>
+                        <default_manufacturer translate="label">
+                            <label>Default Manufacturer</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>Default Manufacturer or Brand for products</comment>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </default_manufacturer>
+                        <manufacturer_attributes translate="label">
+                            <label>Manufacturer Attributes</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <comment>Attributes which are used for product Manufacturer or Brand</comment>
+                            <source_model>flexpayment/source_attribute</source_model>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </manufacturer_attributes>
+                    </fields>
+                </flexpayment>
+            </groups>
+        </payment>
+    </sections>
+</config>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <catalog_product_view>
+        <reference name="product.info.extrahint">
+            <block type="FlexShopper_Payment_Block_Widget" name="flexshopper_widget" as="flexshopper_widget_as" template="flexshopper/widget.phtml" />
+        </reference>
+    </catalog_product_view>
+    <flexpayment_payment_redirect>
+    	<remove name="header"/>
+		<remove name="footer"/>
+        <reference name="root">
+            <action method="setTemplate"><template>flexshopper/payment/layout.phtml</template></action>
+        </reference>
+    </flexpayment_payment_redirect>
+    <flexpayment_payment_response>
+    	<remove name="header"/>
+		<remove name="footer"/>
+        <reference name="root">
+            <action method="setTemplate"><template>flexshopper/payment/layout.phtml</template></action>
+        </reference>
+    </flexpayment_payment_response>
+</layout>
