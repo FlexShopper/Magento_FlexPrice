@@ -54,3 +54,29 @@ Below is how the configuration page for FlexShopper should look like:
 The ending result should be a new payment option for your customers at the checkout page:
 
 [![](assets/payment_checkout.png)](https://merchants.flexshopper.com)
+
+####Extension Features
+
+The extension incorporates the best Magento development practices and flawlessly integrates into virtually any Magento theme.
+The customer experience is easy and transparent. Customers have option to choose FlexShopper payment method during checkout and will be redirected to secure FlexShopper payment gateway to finalize their order.
+With the extension admins have access to all standard order management actions like Invoices and credit memos.
+FlexShopper Payment Gateway requires some additional information about the goods sold by a merchant. The information includes Manufacturer or Brand product attribute to be passed to the gateway. For that to work flawlessly the extension has a setting where merchant can assign attributes to be used to retrieve Manufacturer/Brand information for each product.
+In case a merchant doesn’t use any Manufacturer/Brand attribute in his product catalog, he has the option to enter a default Manufacturer/Brand value to be used with a product that doesn’t have that information.
+
+####FlexShopper Benefits
+
+FlexShopper converts more customers and increases revenues:
+
+Attract new customers who do not have sufficient cash or credit to make their purchase.
+Reduce shopping cart abandons by offering an alternative payment option.
+Fund 100% of the customers' purchases, with zero risk and zero transaction fees.
+Quick, online application, where customers receive an instant spending limit.
+Easy API integration to drive incremental sales for your business right away.
+
+####About FlexShopper
+
+FlexShopper is an innovative financial and technology company, disrupting the Lease-to-Own (LTO) industry by migrating the proven brick and mortar LTO model into the digital age.
+
+We are an eCommerce marketplace and payment method for up to 50 million consumers that do not have sufficient cash or credit to buy durable goods.
+
+By using our technology platforms, merchants increase their sales with no risk because FlexShopper pays 100% of the retail price. Consumers benefit from the ability to shop for the products they love, while paying only affordable weekly payments.
