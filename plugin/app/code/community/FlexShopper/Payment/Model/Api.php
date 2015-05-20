@@ -14,7 +14,21 @@ class FlexShopper_Payment_Model_Api extends Mage_Core_Model_Abstract
 			$systemMessage = '';
 			foreach ($result as $key => $value) {
 				if($key != 'items'){
-					$systemMessage .= "\n " . $key . ": " . $value; 
+					if($key == 'status'){
+						$systemMessage .= "\n Status: " . $value; 
+					}
+
+					if($key == 'reference_id'){
+						$systemMessage .= "\n Reference ID: " . $value; 
+					}
+
+					if($key == 'agreement_amount'){
+						$systemMessage .= "\n Agreement Amount: " . $value; 
+					}
+
+					if($key == 'total_weekly_payment'){
+						$systemMessage .= "\n Total Weekly Payment: " . $value; 
+					}
 				}
 			}
 
