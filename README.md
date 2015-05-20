@@ -28,7 +28,7 @@ Install
 ```
 cd MAGENTO_ROOT
 modgit init
-modgit -i plugin/:. add FlexShopper_Payment https://github.com/FlexShopper/Magento-FlexShopper.git
+modgit -i plugin/:. add FlexShopper_Payment https://github.com/FlexShopper/Magento_FlexPrice.git
 ```
 #####to update:
 ```
