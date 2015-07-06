@@ -8,9 +8,16 @@ if($this->showWidget()){
  ?>
 <script type="text/javascript" src="http://cdn.flexprice.com/flexprice.js"></script>
 <script type="application/javascript">
+    var elementExists = document.getElementsByClassName("special-price"); //" .price";
+    if(elementExists != null){
+        var elementToUse = '.special-price .price';
+    } else {
+        var elementToUse = '.price'
+    }
+
     var _FP = new _FlexPrice({
         productSelector: '.product-view',
-        priceSelector: '.price',
+        priceSelector: elementToUse,
         size: 'SM'
     });
 </script>
