@@ -2,7 +2,7 @@
 <config>
 	<modules>
 		<FlexShopper_Payment>
-			<version>0.2.1</version>
+			<version>0.2.2</version>
 		</FlexShopper_Payment>
 	</modules>
 	<global>
@@ -58,7 +58,7 @@
                         <class>FlexShopper_Payment_Model_Observer</class>
                         <method>refundOrder</method>
                     </flex_payment_refund>
-                </observers>                
+                </observers>
             </sales_order_creditmemo_refund>
             <sales_model_service_quote_submit_before>
                 <observers>
@@ -67,7 +67,7 @@
                         <class>FlexShopper_Payment_Model_Observer</class>
                         <method>checkLimit</method>
                     </flex_payment_limit>
-                </observers>                  
+                </observers>
             </sales_model_service_quote_submit_before>
             <order_cancel_after>
                 <observers>
@@ -76,7 +76,7 @@
                         <class>FlexShopper_Payment_Model_Observer</class>
                         <method>cancelTransaction</method>
                     </flex_transaction_cancel>
-                </observers>                 
+                </observers>
             </order_cancel_after>
             <payment_method_is_active>
                 <observers>
@@ -85,7 +85,7 @@
                         <class>FlexShopper_Payment_Model_Observer</class>
                         <method>isFlexshopperActive</method>
                     </flex_check_if_active>
-                </observers>                  
+                </observers>
             </payment_method_is_active>
         </events>
 	</global>
