@@ -1,9 +1,30 @@
-<?php 
+<?php
 if($this->showWidget()){
+    $product = $this->getProduct();
+    $type = $product->getTypeId();
+
+    if($type != 'downloadable' && $type != 'virtual'){
+    	if($type != 'grouped'){
  ?>
+<script type="text/javascript" src="http://cdn.flexprice.com/flexprice.js"></script>
+<script type="application/javascript">
+    var _FP = new _FlexPrice({
+        productSelector: '.product-view',
+        priceSelector: '.price'
+    });
+</script>
+<?php
+        }
+    }
+}
+?>
+
+<?php /* ?>
 <script type="text/javascript">
-<?php 
-	$product = $this->getProduct(); 
+<?php
+*/
+/*
+	$product = $this->getProduct();
 	$type = $product->getTypeId();
 
 	if($type != 'downloadable' && $type != 'virtual'){
@@ -12,18 +33,18 @@ if($this->showWidget()){
 	jQuery.noConflict();
 	var the_element_to_use = '';
 	var _flex = _flex || {};
-	var the_element_to_use = "#product-price-<?php echo $product->getId(); ?>";
-	var elementExists = document.getElementById("product-price-<?php echo $product->getId(); ?>"); //" .price";
+	var the_element_to_use = "#product-price-<?php// echo $product->getId(); ?>";
+	var elementExists = document.getElementById("product-price-<?php //echo $product->getId(); ?>"); //" .price";
 	if(elementExists != null){
 		var child_exists = elementExists.getElementsByTagName("span").length;
 		if(child_exists > 0){
-			var the_element_to_use = "#product-price-<?php echo $product->getId(); ?> .price";
+			var the_element_to_use = "#product-price-<?php //echo $product->getId(); ?> .price";
 		}
 	}
 	console.log(the_element_to_use);
 	_flex.priceSelector = the_element_to_use;
-<?php 
-		} else {
+<?php
+		//} else {
 		// $associated = $product->getTypeInstance(true)->getAssociatedProducts($product);
 		// foreach ($associated as $product_associated) {
 ?>
@@ -50,4 +71,4 @@ if($this->showWidget()){
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(fx, s);
     })();
 </script>
-<?php } ?>
+<?php } */ ?>
