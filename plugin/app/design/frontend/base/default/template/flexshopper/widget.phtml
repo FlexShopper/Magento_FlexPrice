@@ -9,7 +9,7 @@ if($this->showWidget()){
 <script type="text/javascript" src="http://cdn.flexprice.com/flexprice.js"></script>
 <script type="application/javascript">
     var elementExists = document.getElementsByClassName("special-price"); //" .price";
-    if(elementExists != null){
+    if(elementExists.length > 0 ){
         var elementToUse = '.special-price .price';
     } else {
         var elementToUse = '.price'
